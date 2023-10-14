@@ -5,6 +5,9 @@ const {
   updateStudentProfile,
   studentDetails,
   removeStudentProfile,
+  createOtpforPasswordReset,
+  verifyOtp,
+  setPassword,
 } = require("../Controllers/studentsController");
 const AuthVerifyMiddleware = require("../Middlewares/AuthVerifyMiddleware");
 const {
@@ -23,6 +26,9 @@ router.post("/login", studentLogin);
 router.put("/updateProfile", AuthVerifyMiddleware, updateStudentProfile);
 router.get("/getDetails", AuthVerifyMiddleware, studentDetails);
 router.delete("/removeStudent/:id", AuthVerifyMiddleware, removeStudentProfile);
+router.post("/createOtp/:email" , AuthVerifyMiddleware, createOtpforPasswordReset);
+router.put("/verifyOtp/:email/:otp" , AuthVerifyMiddleware,verifyOtp)
+router.put("/resetPassword" , AuthVerifyMiddleware , setPassword)
 
 //works request
 router.post("/createWork", AuthVerifyMiddleware, createWrok);
